@@ -1,0 +1,47 @@
+﻿@model SocialLink
+@{
+    ViewData["Title"] = "Site Info / SocialLinks Add";
+
+}
+@section addcss{
+         <style>
+                label {
+                border-color: transparent !important;
+                color: black !important;
+                background-color: transparent !important;
+            }
+         </style>
+ }
+
+<div class="container p-5">
+    <h2 class="text-dark">Create SocialLinks</h2>
+
+
+    <div class="form-group">
+        <form method="post" asp-action="SocialAdd">
+            <div class="col-md-12 form-control bg-transparent border-0" asp-validation-summary="All"></div>
+            <div class="form-group">
+                <label class="form-control">Name</label>
+                <input required asp-for="Name" class="form-control text-dark" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="form-control">Icon</label>
+                <input required asp-for="Icon" class="form-control text-dark" />
+                <span asp-validation-for="Icon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="form-control">Link</label>
+                <input required asp-for="Link" class="form-control text-dark" />
+                <span asp-validation-for="Link" class="text-danger"></span>
+            </div>
+            <div class="d-flex my-5">
+                <input class="btn btn-primary" type="submit" value="Add" />
+                <a asp-action="index" class="btn btn-success">Back</a>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

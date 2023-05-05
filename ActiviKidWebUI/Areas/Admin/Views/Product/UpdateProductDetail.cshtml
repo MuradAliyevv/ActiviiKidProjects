@@ -1,0 +1,34 @@
+﻿@model ProductColorSizeCount
+
+<form action="UpdateProductDetail" method="post">
+    @if (!string.IsNullOrWhiteSpace(ViewBag.Error))
+    {
+        <div class="form-group" style="margin-top: 2%;">
+            @ViewBag.Error
+        </div>
+    }
+
+    <div class="form-group" style="margin-top: 2%;">
+        <label class="form-control">Image</label>
+        <input type="file" name="file" class="form-control text-dark" />
+        <span asp-validation-for="ImagePath" class="text-danger"></span>
+    </div>
+
+    <div class="form-group" style="margin-top: 2%;">
+        <label class="form-control">Color</label>
+        <select asp-for="ColorId" class="form-control text-dark" asp-items="ViewBag.Color"> </select>
+        <span asp-validation-for="ColorId" class="text-danger"></span>
+    </div>
+    <div class="form-group" style="margin-top: 2%;">
+        <label class="form-control">Count</label>
+        <input required asp-for="Count" class="form-control text-dark" />
+        <input type="hidden" asp-for="ProductId" class="form-control text-dark" value="@Model.ProductId" />
+        <input type="hidden" name="counts" class="form-control text-dark" value="@Model.Count" />
+        <input type="hidden" asp-for="ImagePath" class="form-control text-dark" />
+        <input type="hidden" asp-for="Id" class="form-control text-dark" value="@Model.Id" />
+        <span asp-validation-for="Count" class="text-danger"></span>
+    </div>
+    <div class="form-group" style="margin-top: 2%;">
+        <input type="submit" class="form-control text-dark" />
+    </div>
+</form>

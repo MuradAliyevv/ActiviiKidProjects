@@ -1,0 +1,135 @@
+﻿@model IEnumerable<Orders>
+@{
+    var total = 0;
+    var discount = 0;
+}
+@section addcss{
+    <style>
+        input, textarea, select, label {
+            width: 100% !important;
+        }
+
+        .form-control {
+            margin-top: 2% !important;
+        }
+
+        .bread-crumb.right-side ul {
+            display: flex;
+        }
+
+            .bread-crumb.right-side ul li {
+                margin: 1%;
+            }
+
+        td {
+            padding: 2% 0%;
+        }
+    </style>
+}
+<!-- Page Header Start -->
+<section class="page-header">
+    <h2 class="page-title color--white">@LayoutResource.My_Order</h2>
+</section>
+<!-- Page Header End -->
+<!-- Breadcumb area Start -->
+<div class="breadcumb-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <ul class="breadcumb">
+                    <li class="breadcumb__list"><a class="breadcumb__link">@LayoutResource.Home</a></li>
+                    <li class="breadcumb__list"><a class="breadcumb__link current">@LayoutResource.My_Order</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcumb area End -->
+
+<section class="ptb-95 mobile-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 mb-xs-30">
+                <div class="cart-item-table commun-table">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Product Name</th>
+                                    <th>Price</th>
+                                    <th>Discount</th>
+                                    <th>Sub Total</th>
+                                    <th>Is Approved</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+
+                                    <tr>
+                                        <td>@item.Product.Name</td>
+                                        <td>
+                                            <ul>
+                                                <li>
+                                                    <div class="base-price price-box"> <span class="price">$@item.Product.Price</span> </div>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            @if (item.Product == null)
+                                            {
+                                                <div class="total-price price-box"> <span class="price">0%</span> </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="total-price price-box"> <span class="price">@item.Product.Discount%</span> </div>
+                                            }
+                                        </td>
+
+                                        <td><span class="price">$@(item.Product.Price - ((item.Product.Price * item.Product.Discount) / 100))</span></td>
+                                        @if (item.approved == true)
+                                        {
+                                            <td>
+                                                <i class="fa-solid fa-check"></i>
+                                            </td>
+                                        }
+                                        else if (item.DeletedDate != null)
+                                        {
+                                            <td>
+                                                Not Accepted
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <i class="fa-solid fa-xmark"></i>
+                                            </td>
+                                        }
+
+
+                                    </tr>
+                                }
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mtb-30">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="cart-total-table commun-table">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="mt-30">
+        </div>
+    </div>
+</section>

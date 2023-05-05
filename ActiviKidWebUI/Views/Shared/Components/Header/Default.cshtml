@@ -1,0 +1,137 @@
+﻿@model FooterViewModel
+<header class="header header-1">
+    <div class="header-top header-1--top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8 text-center text-lg-start">
+
+                    <!-- Contact Info Start -->
+                    <ul class="contact-info contact-info--1">
+                        <li class="contact-info__list">@LayoutResource.Call_Us : <span>+@Model.SiteInfo.Number</span></li>
+                        <li class="contact-info__list">email : <a href="mailto:@Model.SiteInfo.Email">@Model.SiteInfo.Email</a></li>
+                           @if (!User.Identity.IsAuthenticated)
+                            {
+                        <li class="contact-info__list"><a asp-controller="account" asp-action="login">Sign In</a></li>
+                            <li class="contact-info__list"><a asp-controller="account" asp-action="register">Sign Up</a></li>
+                        }
+                        else
+                        {
+                        <li class="contact-info__list"><a asp-controller="account" asp-action="logout">Sign Out</a></li>
+                        <li class="contact-info__list"><a asp-controller="account" asp-action="register">Sign Up</a></li>
+                        }
+                    </ul>
+                    <!-- Contact Info End -->
+
+                </div>
+                <div class="col-lg-4">
+
+                    <!-- Header Top Nav Start -->
+                    <div class="header-top__nav header-top__nav--1 d-flex justify-content-lg-end justify-content-center">
+                 
+                        <div class="language-selector header-top__nav--item">
+                            <div class="dropdown header-top__dropdown">
+                                <a class="dropdown-toggle" id="languageID" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img src="~/assets/img/lan1.jpg" alt="English"> ENGLISH
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="languageID">
+                                    <a class="dropdown-item" id="eng" asp-controller="home" asp-action="index" asp-route-lang="az"><img src="~/assets/img/icons8-azerbaijan-48.png" alt="Azerbaijan"> Azerbaijan</a>
+                                    <a class="dropdown-item" id="az" asp-controller="home" asp-action="index" asp-route-lang="en"><img src="~/assets/img/icons8-united-kingdom-48.png" alt="English">English</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Header Top Nav End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-middle header-1--middle">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-xl-2 col-lg-3 col-sm-4">
+                    <div class="header-middle__left">
+                        <!-- Logo Start -->
+                        <a href="index.html" class="logo-box">
+                            <img src="~/assets/img/@Model.SiteInfo.Logo" alt="logo" class="img-fluid">
+                        </a>
+                        <!-- Logo End -->
+                        <!-- Category Nav Start -->
+                        <div class="category-nav d-lg-block d-none">
+                            <h2 class="category-nav__title" id="js-cat-nav-title"><i class="fa fa-bars"></i> <span>@LayoutResource.Categories</span></h2>
+
+                            <ul class="category-nav__menu hidden-in-default" id="js-cat-nav">
+                                <li class="category-nav__menu__item has-children">
+                                    @await Component.InvokeAsync("Category", new{header = true, lang = ViewBag.Lang})
+                                </li>
+
+                            </ul>
+                        </div>
+                        <!-- Category Nav End -->
+
+                    </div>
+                </div>
+                <div class="col-xl-8 col-lg-7 order-3 order-lg-2">
+
+                </div>
+                <div class="col-lg-2 col-sm-8 order-2 order-lg-3">
+
+                    <!-- Header Cart Start -->
+                    <div class="header-cart header-cart--1">
+                        <a asp-controller="basket" asp-action="index" class="header-cart__dropdown-toggle" >
+                            <i class="fa-solid fa-basket-shopping"></i>
+                                <sup class="header-cart__count" id="basket-cart">@ViewBag.Count</sup>
+                        </a>
+               
+                    </div>
+                    <!-- Header Cart End -->
+
+                </div>
+                <div class="col-12 d-lg-none order-4">
+                    <!-- Category Mobile Menu Start -->
+                    <div class="category-moble-menu"></div>
+                    <!-- Category Mobile Menu End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-bottom header-1--bottom fixed-header">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <nav class="main-navigation">
+                        <!-- Mainmenu Start -->
+                        <ul class="mainmenu">
+                            <li class="mainmenu__item">
+                                <a asp-controller="home" asp-action="index" class="mainmenu__link">@LayoutResource.Home</a>
+                            </li>
+                            <li class="mainmenu__item">
+                                <a asp-controller="About" asp-action="index" class="mainmenu__link">@LayoutResource.About_Us</a>
+                            </li>
+                            <li class="mainmenu__item">
+                                <a asp-controller="shop" asp-action="index" class="mainmenu__link">@LayoutResource.Shop</a>
+                               
+                            </li>
+                            <li class="mainmenu__item ">
+                                <a asp-controller="news" asp-action="index" class="mainmenu__link">@LayoutResource.Blog</a>
+                            </li>
+                            <li class="mainmenu__item"><a asp-controller="Contact" asp-action="index" class="mainmenu__link">@LayoutResource.Contact_Us</a></li>
+                              @if (!string.IsNullOrWhiteSpace(ViewBag.Order))
+                                {
+                                <li class="mainmenu__item"><a asp-controller="Order" asp-action="index" asp-route-id="@ViewBag.Order" class="mainmenu__link">My Order</a></li>
+                                }
+                        </ul>
+                        <!-- Mainmenu End -->
+                    </nav>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <!-- Main Mobile Menu Start -->
+                    <div class="mobile-menu"></div>
+                    <!-- Main Mobile Menu End -->
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,36 @@
+﻿@model HomeViewModel
+@{
+    var counter = 0;
+}
+@if (ViewBag.header !=true)
+{
+    @foreach (var item in Model.Category)
+    {
+        counter++;
+        if (counter == 1)
+        {
+            <a class="nav-link product-tab__link active" id="@item.Name-tab" data-bs-toggle="tab"
+               href="#@item.Name" role="tab" aria-controls="@item.Name" aria-selected="true">@item.Name</a>
+        }
+        else
+        {
+            <a class="nav-link product-tab__link" id="@item.Name-tab" data-bs-toggle="tab"
+               href="#@item.Name" role="tab" aria-controls="@item.Name" aria-selected="true">@item.Name</a>
+        }
+    }
+}
+else
+{
+    @foreach (var item in Model.Category)
+    {
+        counter++;
+        if (counter == 1)
+        {
+            <a class="nav-link product-tab__link active" asp-controller="shop" asp-action="index" asp-route-id="@item.Id" >@item.Name</a>
+        }
+        else
+        {
+            <a class="nav-link product-tab__link" asp-controller="shop" asp-action="index" asp-route-id="@item.Id" >@item.Name</a>
+        }
+    }
+}

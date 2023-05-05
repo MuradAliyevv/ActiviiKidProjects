@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActiviKidWebUI", "ActiviKidWebUI\ActiviKidWebUI.csproj", "{CE79E970-0698-4161-8289-171BC5A2E311}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE79E970-0698-4161-8289-171BC5A2E311}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE79E970-0698-4161-8289-171BC5A2E311}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE79E970-0698-4161-8289-171BC5A2E311}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE79E970-0698-4161-8289-171BC5A2E311}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7DA09153-0F2D-4281-BC3F-88576696C84E}
+	EndGlobalSection
+EndGlobal

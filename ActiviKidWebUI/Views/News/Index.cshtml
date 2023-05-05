@@ -1,0 +1,62 @@
+﻿@model NewsViewModel
+
+<!-- Page Header Start -->
+<section class="page-header">
+    <h2 class="page-title color--white">Single Blog Left Sidebar</h2>
+</section>
+<!-- Page Header End -->
+<!-- Breadcumb area Start -->
+<div class="breadcumb-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <ul class="breadcumb">
+                    <li class="breadcumb__list"><a class="breadcumb__link" href="index.html">@LayoutResource.Home</a></li>
+                    <li class="breadcumb__list"><a class="breadcumb__link current" href="blog-1-column-left-sidebar.html">@LayoutResource.Blog</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcumb area End -->
+<!-- Main content wrapper start -->
+
+<div class="main-content-wrapper">
+    <div class="page-inner section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 order-lg-2 order-1">
+                    <div class="single-post-wrapper mb-md--40">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="blog-box">
+                                    @foreach(var item in Model.News)
+                                    {
+                                        <article class="blog">
+                                            <div class="blog__thumb">
+                                                <img src="~/assets/img/@item.ImagePath" alt="blog thumb" style="width: 100%;">
+                                            </div>
+                                            <div class="blog__content">
+                                                <div class="blog__entry-meta">
+                                                    <h2 class="blog__title">@item.Name</h2>
+                                                    <div class="blog__cotnet">
+                                                        <p>@item.Description</p>
+                                                 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    }
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main content wrapper end -->
+@await Component.InvokeAsync("OurClient")

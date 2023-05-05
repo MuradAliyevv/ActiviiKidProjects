@@ -1,0 +1,238 @@
+﻿@model ProductFormModel
+@section addcss{
+
+    <style>
+
+
+        .label-situation {
+            background-color: transparent;
+            position: relative !important;
+        }
+
+            .label-situation > label {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: rgba(255, 255, 255, 0.281) !important;
+            }
+
+            .label-situation > img {
+                width: 100%;
+            }
+
+        .input-situation {
+            opacity: 0 !important;
+            background-color: transparent;
+            position: absolute !important;
+            height: 800px !important
+        }
+
+        #plusIcon, #plusLogo {
+            position: absolute;
+        }
+
+        .row div:nth-child(2) > div > label {
+            text-align: left !important;
+        }
+
+
+        .custom-checkbox {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+            .custom-checkbox .label {
+                font-size: 1.2em;
+                margin: 0 10px;
+            }
+
+            .custom-checkbox .checkmark {
+                width: 25px;
+                height: 25px;
+                border: 2px solid #222;
+                display: inline-block;
+                border-radius: 3px;
+                background: #222 url(https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/White_check.svg/1200px-White_check.svg.png) center/1250% no-repeat;
+                transition: background-size 0.2s ease;
+            }
+
+            .custom-checkbox input:checked + .checkmark {
+                background-size: 60%;
+                transition: background-size 0.25s cubic-bezier(0.7, 0, 0.18, 1.24);
+            }
+
+            .custom-checkbox input {
+                display: none;
+            }
+    </style>
+}
+
+<div class="container p-5">
+    <h2 class="text-dark">Update Project</h2>
+
+
+
+    <form method="post" action="Update" enctype="multipart/form-data">
+        @if (!string.IsNullOrWhiteSpace(ViewBag.Error))
+        {
+            <div class="col-md-12 " style="margin-top: 2%;">
+                <div class="form-group">
+                    @ViewBag.Error
+                </div>
+            </div>
+        }
+        <div class="row text-center">
+
+            <div class="col-md-12 ">
+
+
+
+            </div>
+            <div class="col-md-12 " style="margin-top: 2%;">
+                <div class="form-group">
+                  
+                    <input type="hidden" asp-for="Product.Id" class="form-control text-dark" value="@Model.Product.Id" />
+                    <input type="hidden" asp-for="Product.Count" class="form-control text-dark" value="@Model.Product.Count" />
+                    <input type="hidden" asp-for="Product.ConstantCount" class="form-control text-dark" value="@Model.Product.ConstantCount" />
+                    <input type="hidden" asp-for="ProductRus.Count" class="form-control text-dark" value="@Model.Product.Count" />
+                    <input type="hidden" asp-for="ProductRus.ConstantCount" class="form-control text-dark" value="@Model.Product.ConstantCount" />
+            
+                <div class="form-group">
+                    <label class="form-control">Name</label>
+                    <input required asp-for="Product.Name" class="form-control text-dark" />
+                    <span asp-validation-for="Product.Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="form-control">Имя</label>
+                    <input required asp-for="ProductRus.Name" class="form-control text-dark" />
+                    <span asp-validation-for="Product.Name" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="margin-top: 2%;">
+                    <label class="form-control">Price</label>
+                    <input required asp-for="Product.Price" class="form-control text-dark" />
+                    <span asp-validation-for="Product.Price" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="margin-top: 2%;">
+                    <label class="form-control">Discount</label>
+                    <input required asp-for="Product.Discount" class="form-control text-dark" />
+                    <span asp-validation-for="Product.Discount" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="form-control" style="margin-top: 2%;">Gender</label>
+                    <select required asp-for="Product.GenderId" class="form-control text-dark" asp-items="ViewBag.Gender"> </select>
+                    <span asp-validation-for="Product.GenderId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control" style="margin-top: 2%;">Category</label>
+                    <select required asp-for="Product.CategoryId" class="form-control text-dark" asp-items="ViewBag.Category"> </select>
+                    <span asp-validation-for="Product.GenderId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control" style="margin-top: 2%;">Description</label>
+                    <textarea required rows="7" asp-for="Product.Description" class="form-control text-dark"></textarea>
+                    <span asp-validation-for="Product.Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="form-control" style="margin-top: 2%;">Описание</label>
+                    <textarea required rows="7" asp-for="ProductRus.Description" class="form-control text-dark"></textarea>
+                    <span asp-validation-for="ProductRus.Description" class="text-danger"></span>
+                </div>
+
+                <div style="display: flex; align-items center; justify-content: space-between;">
+                    <div class="form-group" style="margin-top: 2%; display: flex; align-items: center;">
+                        <label style="margin-bottom:0% !important;">Is top Product?</label>
+                        <input type="checkbox" asp-for="Product.Top" style="margin-left: 2%;" />
+                        <span asp-validation-for="Product.Top" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="form-group" style="margin-top: 2%; display: flex; align-items: center;">
+                        <label style="margin-bottom:0% !important;">Is Bestseller?</label>
+                        <input type="checkbox" asp-for="Product.BestSeller" style="margin-left: 2%;" />
+                        <span asp-validation-for="Product.BestSeller" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 2%; display: flex; align-items: center;">
+                        <label style="margin-bottom:0% !important;">Is Most Liked?</label>
+                        <input type="checkbox" asp-for="Product.MostLiked" style="margin-left: 2%;" />
+                        <span asp-validation-for="Product.MostLiked" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="margin-top: 2%; display: flex; align-items: center;">
+                        <label style="margin-bottom:0% !important;">Is New Arrival?</label>
+                        <input type="checkbox" asp-for="Product.NewArrival" style="margin-left: 2%;" />
+                        <span asp-validation-for="Product.NewArrival" class="text-danger"></span>
+                    </div>
+                </div>
+                </div>
+
+                @if(Model.Product.ProductColorSizeCount.Count > 0)
+                {
+                    <div class="col-xl-12 col-md-12 col-sm-12" style="margin-top: 2%;">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Color And Count</h4>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered border-primary mb-0">
+
+                                        <thead>
+                                            <tr>
+
+                                                <th>Image</th>
+                                                <th>Color</th>
+                                                <th>Count</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model.Product.ProductColorSizeCount)
+                                            {
+                                                <tr>
+
+                                                    <td>
+                                                        <img src="~/assets/img/@item.ImagePath" width="30" height="30" />
+                                                    </td>
+                                                    <td>@item.Color.Name</td>
+                                                    <td>@item.Count</td>
+                                                    <td>
+                                                        <a asp-action="UpdateProductDetail" asp-route-id="@item.Id" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen"></i></a>
+                                                        <a asp-action="DeleteProductDetail" asp-route-id="@item.Id" class="btn btn-sm btn-warning"><i class="fa-solid fa-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                            }
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                  <div class="form-group" style="margin-top: 2%;">
+                    <a asp-action="AddProductDetail" asp-route-id="@Model.Product.Id" class="form-control text-dark">Add Size & Color</a>
+                </div>
+
+                <div class="form-group" style="margin-top: 2%;">
+                    <input type="submit" class="form-control text-dark" />
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+
+</div>
+
+
+
+

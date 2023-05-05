@@ -1,0 +1,110 @@
+﻿  @model ProductViewModel
+@{
+    var id = 0;
+}
+
+       @if (string.IsNullOrWhiteSpace(ViewBag.Notfound))
+{
+
+    @foreach (var itemm in Model.ProductColorSizeCounts)
+    {
+        if (itemm.ProductId != id)
+        {
+            id = itemm.ProductId;
+
+            @if (string.IsNullOrWhiteSpace(ViewBag.Class))
+            {
+                @foreach (var item in Model.Products)
+                {
+
+                    if (item.Id == itemm.ProductId)
+                    {
+                        <div class="product-box variable-product">
+                            <div class="product-box__meta">
+                                <a  asp-action="index" asp-route-id="@item.Id" class="product-box__category">@item.Category.Name</a>
+                                @if (item.Discount > 0)
+                                {
+                                    <span class="product-box__sticker product-box__sticker--discount">-@item.Discount%</span>
+                                }
+                                else
+                                {
+                                   
+                                }
+                            </div>
+                            <div class="product-box__image">
+                                <img src="~/assets/img/@itemm.ImagePath" alt="@item.ImagePath" class="primary_image">
+                                <img src="~/assets/img/@itemm.ImagePath" alt="product image" class="secondary_image">
+                                <a asp-action="index" asp-route-id="@item.Id" class="quick-view"> <i class="fa-solid fa-info"></i></a>
+                            </div>
+                            <div class="product-box__footer">
+                                <div class="product-box__desc">
+                                    <a  asp-action="index" asp-route-id="@item.Id" class="product-box__title">@item.Name</a>
+                                    <p class="product-box__price">
+                                        @if(item.Discount > 0)
+                                        {
+                                            <span class="sale-price">@(item.Price - ((item.Price * item.Discount) / 100))</span>
+
+                                            <span class="regular-price">&dollar;@item.Price </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="sale-price" style="color: #a2a2a2;">@(item.Price - ((item.Price * item.Discount) / 100))</span>
+                                        }
+
+                                    </p>
+                                </div>
+                                <div class="product-box__links">
+                                    <a href="#" data-id="@item.Id" class="btn add-to-cart btn-style-2 basket-btn">Add to cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+
+            }
+            else
+            {
+                @foreach (var item in Model.Products)
+                {
+
+                    if (item.Id == itemm.ProductId)
+                    {
+                        <div class="@ViewBag.Class-product__group">
+                            <div class="product-box variable-product product-box--horizontal">
+
+                                <div class="product-box__left">
+
+
+                                    <div class="product-box__image">
+                                        <img src="~/assets/img/@itemm.ImagePath" alt="product image" class="primary_image">
+                                        <img src="~/assets/img/@itemm.ImagePath" alt="product image" class="secondary_image">
+                                        <a  asp-action="index" asp-route-id="@item.Id" class="quick-view"><i class="fa-solid fa-info"></i> </a>
+                                    </div>
+                                </div>
+                                <div class="product-box__right">
+                                    <div class="product-box__desc">
+                                        <a asp-action="index" asp-route-id="@item.Id" class="product-box__category">@item.Category.Name</a>
+                                        <a asp-action="index" asp-route-id="@item.Id" class="product-box__title">@item.Name</a>
+                                        <p class="product-box__price">
+                                            <span class="sale-price">&dollar; @item.Price </span>
+                                        </p>
+                                        <a href="#" data-id="@item.Id" class="btn add-to-cart btn-style-2 basket-btn">Add to cart</a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    }
+                }
+
+            }
+
+        }
+    }
+
+}
+else
+{
+    <h4>@ViewBag.Notfound</h4>
+}

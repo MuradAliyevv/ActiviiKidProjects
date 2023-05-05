@@ -1,0 +1,262 @@
+﻿@model CheckFormModel 
+@{
+    var total = 0;
+    var discount = 0;
+}
+
+@section addcss{
+    <style>
+        input, textarea, select, label{
+            width:100% !important;
+        }
+
+        .form-control{
+            margin-top: 2% !important; 
+        }
+
+        .bread-crumb.right-side ul{
+            display: flex;
+        }
+
+        .bread-crumb.right-side ul li{
+            margin: 1%;
+        }
+        td{
+            padding: 2% 0%;
+        }
+    </style>
+}
+<!-- BANNER STRAT -->
+<div class="banner inner-banner">
+    <div class="container">
+        <section class="banner-detail">
+            <h1 class="banner-title">Cart</h1>
+            <div class="bread-crumb right-side">
+                <ul>
+                    <li><a asp-controller="Home" asp-action="index">Home</a>/</li>
+                    <li><span>Cart</span></li>
+                </ul>
+            </div>
+        </section>
+    </div>
+</div>
+<!-- BANNER END -->
+<!-- CONTAIN START -->
+
+<section class="ptb-95 mobile-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 mb-xs-30">
+                <div class="cart-item-table commun-table">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Product Name</th>
+                                    <th>Price</th>
+                                    <th>Discount</th>
+                                    <th>Sub Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach(var item in Model.Products)
+                                {
+                                
+                                     total = total + (int)item.Price;
+
+
+                                                        discount = discount + (int)item.Discount;
+                                    <tr>
+                                        <td>
+                                            <a href="#">
+                                                <div class="product-image"><img width="50" height="50" alt="Tizzy" src="~/assets/img/@item.ProductColorSizeCount.FirstOrDefault(p=>p.ProductId == item.Id).ImagePath"></div>
+                                            </a>
+                                        </td>
+                                        <td>
+
+                                           <span class="name"> @item.Name </span>
+                                            </td>
+                                        <td>
+                                            <ul>
+                                                <li>
+                                                    <div class="base-price price-box"> <span class="price">$@item.Price</span> </div>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            @if(item.Discount == null)
+                                            {
+                                                <div class="total-price price-box"> <span class="price">0%</span> </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="total-price price-box"> <span class="price">@item.Discount%</span> </div>
+                                            }
+                                        </td>
+
+                                        
+                                        <td><span class="price">$@(item.Price - ((item.Price * item.Discount) / 100))</span></td>
+                                               
+                                      
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mtb-30">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="cart-total-table commun-table">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2">Cart Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Item(s) Subtotal</td>
+                                        <td><div class="price-box"> <span class="price">$@(total - ((total * discount) / 100))</span> </div></td>
+                                    </tr>
+
+                           
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="mt-30">
+
+        </div>
+    </div>
+</section>
+<!-- CONTAINER END --> 
+
+<section class="checkout-section ptb-95 mobile-padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+ 
+          <div class="checkout-content">
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="heading-part align-center">
+
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12 col-xs-12 col-md-12">
+                                  <form asp-asp-controller="basket" asp-action="Add" method="post" class="main-form full">
+
+                                     @for (int i = 0; i < Model.Baskets.Count(); i++)
+                                {
+                                    <input class="form-control" type="hidden" asp-for="Baskets[i].Id" value="@Model.Baskets[i].Id">
+                                        <input class="form-control" type="hidden" asp-for="Baskets[i].UserId" value="@Model.Baskets[i].UserId">
+                                        <input class="form-control" type="hidden" asp-for="Baskets[i].ProductId" value="@Model.Baskets[i].ProductId">
+                                    <input class="form-control" type="hidden" asp-for="Baskets[i].ColorId" value="@Model.Baskets[i].ColorId">
+                                    <input class="form-control" type="hidden" asp-for="Baskets[i].Count" value="@Model.Baskets[i].Count">
+                                    <input class="form-control" type="hidden" asp-for="Baskets[i].Price" value="@Model.Baskets[i].Price">
+                                  
+                                }
+                                 
+                                
+                              
+                  <div class="mb-20">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <div class="input-box form-group">
+                          <input class="form-control" type="text" asp-for="Order.FirstName" required="" placeholder="First Name">
+                        </div>
+                        <div class="input-box form-group">
+                                                <input class="form-control" type="text" asp-for="Order.LastName" required="" placeholder="Last Name">
+                        </div>
+                         <div class="input-box form-group">
+                                                <input class="form-control" type="email" asp-for="Order.Email" required="" placeholder="Email Address">
+                        </div>
+
+                         <div class="input-box form-group">
+                                                <input class="form-control" type="text" asp-for="Order.Phone" required="" placeholder="Phone Number">
+                        </div>
+                        <div class="input-box form-group">
+                                                <input class="form-control" type="text" asp-for="Order.Country" required="" placeholder="Country">
+                        </div>
+                         <div class="input-box form-group">
+                                                <input class="form-control" type="text" asp-for="Order.Region" required="" placeholder="Region">
+                        </div>
+                         <div class="input-box form-group">
+                                                <input class="form-control" type="text" asp-for="Order.City" required="" placeholder="City">
+                        </div>
+                        <div class="input-box form-group">
+                                                <input class="form-control" type="text" asp-for="Order.State"  placeholder="State">
+                        </div>
+                        <div class="input-box form-group">
+                                                <input class="form-control" type="text" asp-for="Order.Street" required="" placeholder="Street Address">
+                        </div>
+                        <div class="input-box form-group">
+                                                <input class="form-control" type="text" asp-for="Order.House" required="" placeholder="House Number">
+                        </div>
+                        <div class="input-box form-group">
+                                                <input class="form-control" type="text" asp-for="Order.PostalCode" required="" placeholder="Post Code">
+                        </div>
+                                            <div class="input-box form-group">
+                                               <select asp-for="Order.CardType">
+                                                    <option selected disabled>Change Card Type</option>
+                                                   <option value="visa">Visa</option>
+                                                   <option value="marter">Master</option>
+                                               </select>
+                                            </div>
+                                            <div class="input-box form-group">
+                                                <input class="form-control" type="text" asp-for="Order.CardNumber" required="" placeholder="Card Number">
+                                            </div>
+                                            <div class="input-box form-group">
+                                                <input class="form-control" type="text" asp-for="Order.CardCVV" required="" placeholder="Card CVV">
+                                            </div>
+                                             <div class="input-box form-group">
+                                                <input class="form-control" type="text" asp-for="Order.ExpirationMonth" required="" placeholder="Expiration Month">
+                                            </div>
+                                                                                         <div class="input-box form-group">
+                                                <input class="form-control" type="text" asp-for="Order.ExpirationYear" required="" placeholder="Expiration Year">
+                                            </div>
+                                            <div class="input-box form-group">
+                                                @if (!string.IsNullOrWhiteSpace(ViewBag.Orders))
+                                                {
+                                                    <label>@ViewBag.Orders</label>
+
+                                                }
+                                                else
+                                                {
+                                                    <label>
+                                                        After your order is successfully completed, the My Orders menu will be added to the menu section, from where you can track your order.
+                                                    </label>
+                                                  
+                                                }
+                                               
+                                            </div>
+                                              <div class="input-box form-group">
+                                                <input class="form-control" type="submit"  value="submit">
+                                            </div>
+                      </div>
+      
+                    </div>
+                  </div>
+                            </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+                

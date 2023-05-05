@@ -1,0 +1,53 @@
+﻿<!-- Page Header Start -->
+<section class="page-header">
+    <h2 class="page-title color--white">@LayoutResource.Shop</h2>
+</section>
+<!-- Page Header End -->
+<!-- Breadcumb area Start -->
+<div class="breadcumb-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <ul class="breadcumb">
+                    <li class="breadcumb__list"><a class="breadcumb__link" href="index.html">@LayoutResource.Home</a></li>
+                    <li class="breadcumb__list"><a class="breadcumb__link current" href="shop-list-view.html">@LayoutResource.Shop</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcumb area End -->
+<!-- Main content wrapper Start -->
+<div class="main-content-wrapper">
+    <div class="shop-area section-padding">
+        <div class="container">
+            <div class="row">
+                @await Component.InvokeAsync("Filter", new{lang = ViewBag.Lang})
+                <div class="col-lg-9 order-lg-2 order-1 mb-md--30">
+
+                    <!-- Shop Layout Start -->
+                    <div class="main-shop-wrapper">
+                        <div class="tab-content" id="myTabContent-2">
+                            <div class="tab-pane active" id="grid">
+                                <div class="product-grid-view">
+                                    <div class="row g-0">
+                                        @await Component.InvokeAsync("Product", new{colorId = ViewData["ColorId"], 
+                                        category = ViewData["CategoryId"], min = ViewData["Min"], max = ViewData["Max"], bestseller = ViewData["BestSeller"],
+                                        mostliked = ViewData["MostLiked"], top = ViewData["Top"], newarrival = ViewData["NewArrival"], randoms = true, lang = ViewBag.Lang})
+                                    </div>
+                                </div>
+                            </div>
+                      
+                        </div>
+                      
+                    </div>
+                    <!-- Shop Layout End -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Main content wrapper End -->
+<!-- Clients area Start -->
+@await Component.InvokeAsync("OurClient")
+<!-- Clients area End -->

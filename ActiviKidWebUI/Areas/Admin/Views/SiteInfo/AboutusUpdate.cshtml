@@ -1,0 +1,49 @@
+﻿@model AboutUsFormModel
+@{
+    ViewData["Title"] = "Site Info / About-Us Update";
+
+}
+@section addcss{
+            <link href="~/admin-assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" />
+            <style>
+                label {
+                    border-color: transparent !important;
+                    color: black !important;
+                    background-color: transparent !important;
+                }
+            </style>
+ }
+
+<div class="container p-5">
+    <h2 class="text-dark">Update Service</h2>
+
+
+    <div class="form-group">
+        <form method="post" asp-action="AboutusUpdate">
+
+
+            <div class="form-group">
+                
+                <input type="hidden" asp-for="AboutUs.Id" class="form-control text-dark" />
+                <label class="form-control">Description</label>
+                <textarea rows="20" style="width:100%;" asp-for="AboutUs.Description"></textarea>
+                <span asp-validation-for="AboutUs.Description" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+
+                <input type="hidden" asp-for="AboutUsRus.Id" class="form-control text-dark" />
+                <label class="form-control">Description Rus</label>
+                <textarea rows="10" style="width:100%;" asp-for="AboutUsRus.Description"></textarea>
+                <span asp-validation-for="AboutUsRus.Description" class="text-danger"></span>
+            </div>
+
+            <div class="d-flex my-5">
+                <input class="btn btn-primary" type="submit" value="Update" />
+                <a asp-action="index" class="btn btn-success">Back</a>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

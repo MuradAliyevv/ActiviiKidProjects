@@ -1,0 +1,89 @@
+﻿@model FilterFormModel
+
+<div class="col-lg-3 order-lg-1 order-2">
+    <form method="get" asp-action="Index" asp-controller="Shop">
+    <!-- Sidebar Start -->
+    <aside class="sidebar shop-sidebar">
+        <div class="search-filter">
+
+            <!-- Category Search filter Start -->
+            <div class="search-filter__single search-filter__category mb--30">
+                <div class="section-title section-title--3">
+                        <h2>@LayoutResource.Categories</h2>
+                </div>
+                <div class="form-group">
+                <select class="form-control" asp-for="CategoryId" asp-items="ViewBag.Category"></select>
+                </div>
+            </div>
+            <!-- Category Search filter End -->
+            <!-- Price Search filter Start -->
+            <div class="search-filter__single search-filter__price mb--30">
+                <div class="section-title section-title--3">
+                    <h2>@LayoutResource.Price</h2>
+                </div>
+                <div class="form-group">
+                    <input asp-for="Min" type="number" class="form-control" placeholder="Min" />
+                </div>
+                <div class="form-group" style="margin-top: 2%;">
+                    <input asp-for="Max" type="number" class="form-control" placeholder="Max" />
+                </div>
+            </div>
+            <!-- Price Search filter End -->
+            <!-- Color Search filter Start -->
+            <div class="search-filter__single search-filter__color mb--30">
+                <div class="section-title section-title--3">
+                        <h2>@LayoutResource.Color</h2>
+                </div>
+                <div class="form-group">
+                    <select class="form-control" asp-for="ColorId" asp-items="ViewBag.Color"></select>
+                </div>
+            </div>
+            <!-- Color Search filter End -->
+
+            <!-- BestSeller Search filter Start -->
+            <div class="search-filter__single search-filter__compositions mb--30">
+                <div class="section-title section-title--3">
+                        <h2>@LayoutResource.Best_Seller <input type="checkbox" style="margin-right: 2%;" asp-for="BestSeller" /></h2>
+                </div>
+              
+            </div>
+            <!-- BestSeller Search filter End -->
+            <!-- Most Liked Search filter Start -->
+            <div class="search-filter__single search-filter__compositions mb--30">
+                <div class="section-title section-title--3">
+                        <h2>@LayoutResource.Most_Liked <input style="margin-right: 2%;" asp-for="MostLiked" /></h2>
+                </div>
+
+            </div>
+            <!-- Most Liked Search filter End -->
+            <!-- Top Search filter Start -->
+            <div class="search-filter__single search-filter__compositions mb--30">
+                <div class="section-title section-title--3">
+                        <h2>@LayoutResource.Top<input type="checkbox" style="margin-right: 2%;" asp-for="Top" /></h2>
+                </div>
+
+            </div>
+            <!-- Top Search filter End -->
+            <!-- Top Search filter Start -->
+            <div class="search-filter__single search-filter__compositions mb--30">
+                <div class="section-title section-title--3">
+                        <h2>@LayoutResource.New_Arrival<input type="checkbox" style="margin-right: 2%;" asp-for="NewArrival" /></h2>
+                </div>
+
+            </div>
+            <!-- Top Search filter End -->
+            <!-- Top Search filter Start -->
+            <div class="search-filter__single search-filter__compositions mb--30">
+                <div class="section-title section-title--3">
+                        <h2><input type="submit" value="@LayoutResource.Search" class="form-control btn btn-outline-light text-white" /></h2>
+                </div>
+
+            </div>
+            <!-- Top Search filter End -->
+        </div>
+
+    </aside>
+    <!-- Sidebar End -->
+    </form>
+</div>
+

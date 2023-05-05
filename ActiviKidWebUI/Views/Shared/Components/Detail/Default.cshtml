@@ -1,0 +1,70 @@
+﻿@model ProductDetailViewModel
+@{
+    var counts = 0;
+}
+
+<div class="modal fade show" id="productModal" tabindex="-1" aria-hidden="true">
+
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a asp-controller="home" asp-action="index" asp-route-id="0" class="btn-close" >
+                            <span aria-hidden="true">&times;</span>
+                        </a>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-5">
+                        <div class="fotorama">
+                           @foreach (var item in Model.ProductColorSizeCount)
+                            {
+                               
+                                    <img src="~/assets/img/@item.ImagePath">
+                                
+                                
+                            }
+                        </div>
+                            </div>
+                            <div class="col-md-7">
+                        <h3 class="product-title">@Model.Product.Name</h3>
+                                <div class="product-price">
+                            <span class="regular-price">&dollar;@Model.Product.Price </span>
+                            <span class="sale-price">&dollar; @(Model.Product.Price - ((Model.Product.Price * Model.Product.Discount) / 100))</span>
+                            <span class="discount-badge">save @Model.Product.Discount%</span>
+                                </div>
+                        <p class="product-desc">@Model.Product.Description</p>
+                        <form asp-controller="Home" asp-action="AddToCart" method="get">
+                            <div class="product-varients">
+                                <input type="hidden" asp-for="Basket.ProductId" value="@Model.Product.Id"/>
+
+                                <div class="product-varients__size pb--30">
+                                    <p class="product-varients__label">Color</p>
+                                    <select class="product-varients__select" asp-for="Basket.ColorId">
+                                        @foreach (var item in Model.Color)
+                                        {
+                                            <option value="@item.Id">@item.Name</option>
+                                        }
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="product-action-wrapper pb--30">
+                                <div class="quantity">
+                                    <input type="number" class="quantity-input" asp-for="Basket.Count" id="qty" value="1">
+                                </div>
+                                <input type="submit" class="btn add-to-cart btn-style-2" value="Add To Cart" />
+                                    
+                               
+                            </div>
+                        </form>
+
+                                <p class="product-availability"><i class="fa fa-check"></i> In Stock</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+    </div>
+

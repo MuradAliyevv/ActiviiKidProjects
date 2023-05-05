@@ -1,0 +1,50 @@
+﻿ @model AbourUsViewModel
+      <!-- Page Header Start -->
+<section class="page-header">
+    <h2 class="page-title color--white">@LayoutResource.About_Us</h2>
+</section>
+<!-- Page Header End -->
+<!-- Breadcumb area Start -->
+<div class="breadcumb-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <ul class="breadcumb">
+                    <li class="breadcumb__list"><a class="breadcumb__link" href="index.html">@LayoutResource.Home</a></li>
+                    <li class="breadcumb__list"><a class="breadcumb__link current" href="about-us.html">@LayoutResource.About_Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcumb area End -->
+<!-- Main Content wrapper Start -->
+<div class="main-content-wrapper">
+    <!-- About Us wrapper Start -->
+    <section class="about-area pb--80 pt--40">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title">
+                        <h2>@LayoutResource.About_Us</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="about">
+                        
+                        <p>
+          @Model.AboutUs.Description
+                        </p>
+                      
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- About Us wrapper End -->
+</div>
+<!-- Main Content wrapper End -->
+@await Component.InvokeAsync("OurClient")

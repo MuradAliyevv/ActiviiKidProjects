@@ -1,0 +1,52 @@
+﻿
+@model PagedViewModel<Product>
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="col-xl-12 col-md-12 col-sm-12">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Products</h4>
+            <p class="card-description">
+                Add Product <code> <a class="btn btn-primary" asp-action="Add">Add Product</a></code>
+            </p>
+            <div class="table-responsive">
+                <table class="table table-bordered border-primary mb-0">
+
+                    <thead>
+                        <tr>
+
+                         
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Count</th>'
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Items)
+                        {
+                            <tr>
+                  
+
+                                <td>@item.Name</td>
+                                <td>@item.Price</td>
+                                <td>@item.Count</td>
+                                <td>
+                                    <a asp-action="Detail" asp-route-id="@item.Id" title="Detail" class="btn btn-sm btn-primary"><i class="fa-solid fa-info"></i></a>
+                                    <a asp-action="Update" asp-route-id="@item.Id" title="Update" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen"></i></a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" title="Delete" class="btn btn-sm btn-warning"><i class="fa-solid fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+                 <div class="col-md-12 col-sm-12" style="display:flex; justify-content: center; align-items: center; margin-top: 5%;">
+                    @Model.GetPagenation(Url, "Index", "Admin")
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

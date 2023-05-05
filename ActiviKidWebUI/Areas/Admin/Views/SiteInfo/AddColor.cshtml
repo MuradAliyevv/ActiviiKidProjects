@@ -1,0 +1,110 @@
+﻿@model ColorRusFormModel
+
+@{
+    ViewData["Title"] = "Site Info / Add Color";
+
+}
+
+@section addcss{
+    <style>
+
+
+        .label-situation {
+            background-color: transparent;
+            position: relative !important;
+        }
+
+            .label-situation > label {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: rgba(0, 0, 0, 0.10) !important;
+            }
+
+            .label-situation > img {
+                width: 100%;
+            }
+
+        .input-situation {
+            opacity: 0 !important;
+            background-color: transparent;
+            position: absolute !important;
+            height: 200px !important
+        }
+
+        #plusIcon, #plusLogo {
+            position: absolute;
+        }
+
+        .row div:nth-child(2) > div > label {
+            text-align: left !important;
+        }
+        /*        input, textarea, .container-fluid{
+                    background-color: midnightblue !important;
+                }
+
+
+                .validation-summary-errors ul li{
+                    color: white;
+                }*/
+
+
+
+
+        label {
+            border-color: transparent !important;
+            color: black !important;
+            background-color: transparent !important;
+        }
+    </style>
+}
+
+<div class="container p-5">
+    <h2 class="text-dark"></h2>
+
+
+
+    <form method="post" action="AddColor" enctype="multipart/form-data">
+
+        <div class="row text-center">
+
+            <div class="col-md-12">
+
+                <div class="form-group label-situation col-md-12" style="display: flex; justify-content: center; align-items: center; margin-top:5%; padding:2%; border:1px solid rgba(0, 0, 0, 0.50) !important;">
+                    <label id="plusIcon" class="form-control" for="favicon" style="font-size:2rem; background-color:transparent; border:none; text-align:center;">
+                        Add Color
+                    </label>
+                    <input class="input-situation custom-file-input-for-favicon" type="file" id="createdImage favicon" name="file" width="500" height="500" style="opacity:0;" />
+                    <img src="~/assets/models/" id="createdImageForFavicon" height="200" style="display:block;" />
+
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control">Name</label>
+                    <input required asp-for="Color.Name" class="form-control text-dark" />
+                    <span asp-validation-for="Color.Name" class="text-danger"></span>
+                </div>
+                  <div class="form-group">
+                    <label class="form-control">имя</label>
+                    <input required asp-for="ColorRus.Name" class="form-control text-dark" />
+                    <span asp-validation-for="ColorRus.Name" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-12">
+                    <input class="btn btn-primary my-5" type="submit" value="Add" />
+                </div>
+            </div>
+
+        </div>
+
+
+    </form>
+
+</div>
+
+
+
+@section addjs{
+
+}

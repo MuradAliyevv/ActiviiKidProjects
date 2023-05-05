@@ -1,0 +1,22 @@
+﻿@model IEnumerable<OurClients>
+<!-- Clients area Start -->
+<div class="clients-area pt--40 pb--80">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="client-carousel owl-carousel">
+                    @foreach (var item in Model)
+                    {
+                        <div class="single-client">
+                            <img src="~/assets/img/@item.ImagePath" alt="@item.ImagePath">
+                        </div>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Clients area end -->

@@ -1,0 +1,223 @@
+﻿  @model HomeViewModel
+@{
+    int counter = 0;
+}
+     <!-- Slider area Start -->
+<section class="slider-area pb--40">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="slider-wrapper owl-carousel" id="homepage-slider">
+                    <!-- Single Slider Start -->
+                    <div class="single-slider" style="background-image: url(/assets/img/banner-1.jpg);">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-8 offset-xl-1">
+                                    <div class="slider-content">
+                                        <h1 class="heading-primary" data-animation="fadeInUp" data-delay=".2s" data-duration=".6s">Sale <span>20% off</span></h1>
+                                        <h1 class="heading-primary" data-animation="fadeInLeft" data-delay=".3s" data-duration=".7s">EDUCATION TOYS</h1>
+                                        <p class="slider-content__text" data-animation="fadeInRight" data-delay=".4s" data-duration=".8s">TOY ADVENTURES ARE LEGO CRAZY, NOT SURE HOW LONG WE CAN KEEP THIS UP</p>
+                                        <a href="shop.html" class="btn slider-btn btn-style-1" data-animation="fadeInDown" data-delay=".5s" data-duration=".9s">Shop Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Slider End -->
+                    <!-- Single Slider Start -->
+                    <div class="single-slider" style="background-image: url(/assets/img/banner-2.jpg);">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-8 offset-xl-1">
+                                    <div class="slider-content">
+                                        <h1 class="heading-primary" data-animation="fadeInUp" data-delay=".2s" data-duration=".6s">Sale <span>20% off</span></h1>
+                                        <h1 class="heading-primary" data-animation="fadeInLeft" data-delay=".3s" data-duration=".7s">EDUCATION TOYS</h1>
+                                        <p class="slider-content__text" data-animation="fadeInRight" data-delay=".4s" data-duration=".8s">TOY ADVENTURES ARE LEGO CRAZY, NOT SURE HOW LONG WE CAN KEEP THIS UP</p>
+                                        <a href="shop.html" class="btn slider-btn btn-style-1" data-animation="fadeInDown" data-delay=".5s" data-duration=".9s">Shop Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Slider End -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Slider area End -->
+
+<!-- Our Porducts area Start -->
+<section class="our-products-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title">
+                    <h2>@LayoutResource.Our_Products</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row g-0 product-tab">
+            <div class="col-md-3">
+                <!-- Product Tab Head Start -->
+                <div class="nav flex-column nav-pills product-tab__head" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+
+                    @await Component.InvokeAsync("Category", new{lang = ViewBag.Lang})
+
+                </div>
+                <!-- Product Tab Head End -->
+            </div>
+            <div class="col-md-9">
+                <!-- Product Tab Content Start -->
+                <div class="tab-content product-tab__content" id="v-pills-tabContent">
+                    @foreach(var item in Model.Category)
+                    {
+                        counter++;
+                        if(counter == 1)
+                        {
+                            
+                      
+                        <div class="tab-pane product-tab__pane show active" id="@item.Name" role="tabpanel" aria-labelledby="@item.Name-tab">
+                            <div class="product-tab__carousel owl-carousel js-product-carousel">
+                                    @await Component.InvokeAsync("Product", new{category = item.Id, lang = ViewBag.Lang})
+
+                            </div>
+                            </div>
+                        }
+                        else
+                        {
+                           <div class="tab-pane product-tab__pane " id="@item.Name" role="tabpanel" aria-labelledby="@item.Name-tab">
+                            <div class="product-tab__carousel owl-carousel js-product-carousel">
+                                    @await Component.InvokeAsync("Product", new{category = item.Id, lang = ViewBag.Lang})
+
+                            </div>
+                            </div>
+                        }
+                    }
+                    
+   
+                </div>
+                <!-- Product Tab Content End -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Our Porducts area End -->
+
+<!-- Featured Product area Start -->
+<section class="featured-product-area pt--40 pb--80">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title">
+                    <h2>@LayoutResource.Featured_Products</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="featured-produts owl-carousel js-featured-product">
+                    @await Component.InvokeAsync("Product", new{lang= ViewBag.Lang})
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Featured Product area End -->
+
+<!-- Combine Product area Start -->
+<section class="combine-product-area pt--80 pb--40">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="row mb-md--30">
+                    <div class="col-md-6 col-lg-12">
+                        <div class="banner-box mb-lgo--30 mb-sm--30">
+                            <a href="#">
+                                <img src="~/assets/img/8_1.jpg" alt="promo">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-12">
+                        <!-- Random Product Area Start -->
+                        <div class="random-product">
+                            <h2 class="random-product__title">@LayoutResource.Random_Products</h2>
+                            <div class="random-product__carousel owl-carousel js-random-product">
+                                @await Component.InvokeAsync("Product", new{randoms = false, lang = ViewBag.Lang})
+                            </div>
+
+                        </div>
+                        <!-- Random Product Area End -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="row mb--30">
+                    <div class="col-12">
+                        <div class="produtct-combo-tab">
+                            <div class="nav nav-tabs produtct-combo-tab__head" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link produtct-combo-tab__link active" id="new-tab" data-bs-toggle="tab" href="#new" role="tab" aria-controls="new" aria-selected="true">
+                                    @LayoutResource.New_Arrival
+                                </a>
+                                <a class="nav-item nav-link produtct-combo-tab__link" id="best-seller-tab" data-bs-toggle="tab" href="#best-seller" role="tab" aria-controls="best-seller" aria-selected="false">
+                                    @LayoutResource.Best_Seller
+                                </a>
+                                <a class="nav-item nav-link produtct-combo-tab__link" id="most-liked-tab" data-bs-toggle="tab" href="#most-liked" role="tab" aria-controls="most-liked" aria-selected="false">
+                                    @LayoutResource.Most_Liked
+                                </a>
+                            </div>
+                            <div class="tab-content" id="nav-tabContent">
+                                <div class="tab-pane produtct-combo-tab__pane fade show active" id="new" role="tabpanel" aria-labelledby="new-tab">
+                                    <div class="new-product__carousel owl-carousel js-new-carousel">
+
+
+                                        @await Component.InvokeAsync("Product", new{newarrival = true, lang = ViewBag.Lang})
+
+                                      
+                                    </div>
+                                </div>
+                                <div class="tab-pane produtct-combo-tab__pane fade" id="best-seller" role="tabpanel" aria-labelledby="best-seller-tab">
+                                    <div class="best-seller-product__carousel owl-carousel js-best-seller-carousel">
+
+                                        @await Component.InvokeAsync("Product", new{bestseller = true, lang = ViewBag.Lang})
+                                     
+                                    </div>
+                                </div>
+                                <div class="tab-pane produtct-combo-tab__pane fade" id="most-liked" role="tabpanel" aria-labelledby="most-liked-tab">
+                                    <div class="most-liked-product__carousel owl-carousel js-most-liked-carousel">
+
+                                        @await Component.InvokeAsync("Product", new{mostliked = true, lang = ViewBag.Lang})
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-title">
+                            <h2>@LayoutResource.Hot_Deals</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                      
+                        <div class="trending-product__carousel owl-carousel js-tanding-product-1">
+
+                            @await Component.InvokeAsync("Product", new{top = true, lang = ViewBag.Lang})
+
+                        </div>
+                     
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Combine Product area End -->
+@await Component.InvokeAsync("OurClient")
+

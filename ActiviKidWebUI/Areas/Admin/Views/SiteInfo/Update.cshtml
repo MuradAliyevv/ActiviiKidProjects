@@ -1,0 +1,120 @@
+﻿@model SiteInfo
+
+@{
+    ViewData["Title"] = "Site Info / Update";
+
+}
+
+@section addcss{
+    <style>
+
+
+        .label-situation {
+            background-color: transparent;
+            position: relative !important;
+        }
+
+            .label-situation > label {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: rgba(0, 0, 0, 0.10) !important;
+            }
+
+            .label-situation > img {
+                width: 100%;
+            }
+
+        .input-situation {
+            opacity: 0 !important;
+            background-color: transparent;
+            position: absolute !important;
+            height: 200px !important
+        }
+
+        #plusIcon, #plusLogo {
+            position: absolute;
+        }
+
+        .row div:nth-child(2) > div > label {
+            text-align: left !important;
+        }
+
+       
+
+
+
+        label {
+            border-color: transparent !important;
+            color: black !important;
+            background-color: transparent !important;
+        text-align: left;
+        padding-left: 0;
+    }
+    
+    </style>
+}
+
+<div class="container p-5">
+    <h2 class="text-dark">Update Site Info</h2>
+
+
+
+    <form method="post" action="Update" enctype="multipart/form-data">
+
+        <div class="row text-center">
+
+
+
+            <div class="col-md-12 col-sm-12">
+
+                <div class="col-md-12" asp-validation-summary="All"></div>
+
+                <div class="form-group">
+                    <label class="form-control" for="favicon">Icon</label>
+                    <input id="favicon" type="file" name="fileIcon" class="form-control text-dark" />
+                    <span asp-validation-for="FavIcon" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control" for="file-logo">Logo</label>
+                    <input id="file-logo" type="file" name="fileLogo" class="form-control text-dark" />
+                    <span asp-validation-for="Logo" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="hidden" required asp-for="Id" class="form-control text-dark" />
+                    <input type="hidden" required asp-for="Logo" class="form-control text-dark" />
+                    <input type="hidden" required asp-for="FavIcon" class="form-control text-dark" />
+                    <label class="form-control" for="name">Name</label>
+                    <input id="name" required asp-for="Name" class="form-control text-dark" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="form-control" for="name">Number</label>
+                    <input id="name" required asp-for="Number" class="form-control text-dark" />
+                    <span asp-validation-for="Number" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control" for="name">Email</label>
+                    <input id="name" required asp-for="Email" class="form-control text-dark" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                  <div class="form-group">
+                    <label class="form-control" for="name">Address</label>
+                    <input id="name" required asp-for="Address" class="form-control text-dark" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <input class="btn btn-primary my-5" type="submit" value="Update" />
+            </div>
+
+        </div>
+
+
+    </form>
+
+</div>
+

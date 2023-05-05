@@ -1,0 +1,92 @@
+﻿@model RegisterFormModel
+
+     <!-- Page Header Start -->
+<section class="page-header">
+    <h2 class="page-title color--white">Register</h2>
+</section>
+<!-- Page Header End -->
+<!-- Breadcumb area Start -->
+<div class="breadcumb-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <ul class="breadcumb">
+                    <li class="breadcumb__list"><a class="breadcumb__link" href="index.html">Home</a></li>
+                    <li class="breadcumb__list"><a class="breadcumb__link current" href="register.html">Register</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcumb area End -->
+<!-- Main content wrapper start -->
+
+<div class="main-content-wrapper">
+    <div class="page-inner section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title">
+                        <h2>Create an account</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-7 col-md-11">
+                    <div class="form-box">
+                        <span class="mb--20">Already have an account? <a asp-controller="account" asp-action="index">Log in instead!</a></span>
+                        <form class="form" asp-controller="account" asp-action="register">
+                     
+                            <div class="form__group row align-items-center">
+                                <label for="fname" class="col-md-3 col-12 form__label text-md-right">First Name</label>
+                                <div class="col-md-7 col-lg-6 col-12">
+                                    <input type="text" asp-for="Name" id="fname" class="form__input">
+                                </div>
+                            </div>
+                            <div class="form__group row align-items-center">
+                                <label for="lname" class="col-md-3 col-12 form__label text-md-right">Last Name</label>
+                                <div class="col-md-7 col-lg-6 col-12">
+                                    <input type="text" asp-for="Surname" id="lname" class="form__input">
+                                </div>
+                            </div>
+                                                        <div class="form__group row align-items-center">
+                                <label for="lname" class="col-md-3 col-12 form__label text-md-right">Username</label>
+                                <div class="col-md-7 col-lg-6 col-12">
+                                    <input type="text" asp-for="UserName" id="lname" class="form__input">
+                                </div>
+                            </div>
+                            <div class="form__group row align-items-center">
+                                <label for="register_email" class="col-md-3 col-12 form__label text-md-right">Email</label>
+                                <div class="col-md-7 col-lg-6 col-12">
+                                    <input type="email" asp-for="Email" id="register_email" class="form__input">
+                                </div>
+                            </div>
+                            <div class="form__group row align-items-center">
+                                <label for="email" class="col-md-3 col-12 form__label text-md-right">Password</label>
+                                <div class="col-md-7 col-lg-6 col-12">
+                                    <input type="password" asp-for="Password" id="password" class="form__input">
+                                    <button class="pass-show-btn" type="button">Show</button>
+                                </div>
+                            </div>
+                                                        <div class="form__group row align-items-center">
+                                   <label for="email" class="col-md-3 col-12 form__label text-md-right">Password Confirm</label>
+                                <div class="col-md-7 col-lg-6 col-12">
+                                    <input type="password" asp-for="PasswordConfirm" id="password" class="form__input">
+                                    <button class="pass-show-btn" type="button">Show</button>
+                                </div>
+                            </div>
+               
+                            <div class="form__group row p-0 mb-20">
+                                <div class="col-12 text-right">
+                                    <button type="submit" class="btn btn-small btn-style-3">Register</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main content wrapper end -->

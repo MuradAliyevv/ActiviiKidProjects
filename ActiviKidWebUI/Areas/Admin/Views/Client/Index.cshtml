@@ -1,0 +1,38 @@
+﻿@model IEnumerable<OurClients>
+<div class="col-xl-6 col-md-6 col-sm-12">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Client</h4>
+            <p class="card-description">
+                Add Client <code> <a class="btn btn-primary" asp-action="Add">Create Client</a></code>
+            </p>
+            <div class="table-responsive">
+                <table class="table table-bordered border-primary mb-0">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="~/assets/img/@item.ImagePath" width="80" height="30" />
+                                </td>
+
+                                <td>
+                                    <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen"></i></a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-warning"><i class="fa-solid fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>

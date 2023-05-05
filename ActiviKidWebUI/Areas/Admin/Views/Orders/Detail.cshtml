@@ -1,0 +1,106 @@
+﻿@model OrderViewModel
+@{
+    ViewData["Title"] = "Site Info / Order";
+
+}
+@section addcss{
+    <style>
+        label {
+            border-color: transparent !important;
+            color: black !important;
+            background-color: transparent !important;
+        }
+    </style>
+ }
+
+<div class="container p-5">
+    <h2 class="text-dark">Create Case</h2>
+
+
+    <div class="form-group">
+        <form>
+            <div class="col-md-12 form-control bg-transparent border-0" asp-validation-summary="All"></div>
+            <div class="form-group">
+                <label class="form-control">Product</label>
+                <input required asp-for="Orders.Product.Name" class="form-control text-dark" />
+            </div>
+             <div class="form-group">
+                <label class="form-control">Price</label>
+                <input required asp-for="Orders.Product.Price" class="form-control text-dark" />
+            </div>
+            <div class="form-group">
+                <label class="form-control">Discount</label>
+                <input required asp-for="Orders.Product.Discount" class="form-control text-dark" />
+            </div>
+            <div class="form-group">
+                <label class="form-control">Total</label>
+                <input required asp-for="Orders.Total" class="form-control text-dark" />
+            </div>
+            <div class="form-group">
+                <label class="form-control">Order Number</label>
+                <input required asp-for="Orders.OrderNumber" class="form-control text-dark" />
+            </div>
+            <div class="form-group">
+                <label class="form-control">Color</label>
+                @foreach (var item in Model.Color)
+                {
+                    @if (Model.Orders.Color == item.Id)
+                    {
+                        <input required class="form-control text-dark" value="@item.Name" />
+                    }
+
+                }
+              
+            </div>
+
+            <div class="form-group">
+                <label class="form-control">First Name</label>
+                <input required asp-for="Orders.Order.FirstName" class="form-control text-dark" />
+            </div>
+            <div class="form-group">
+                <label class="form-control">Last Name</label>
+                <input required asp-for="Orders.Order.LastName" class="form-control text-dark" />
+            </div>
+            <div class="form-group">
+                <label class="form-control">Country</label>
+                <input required asp-for="Orders.Order.Country" class="form-control text-dark" />
+            </div>
+            <div class="form-group">
+                <label class="form-control">Region</label>
+                <input required asp-for="Orders.Order.Region" class="form-control text-dark" />
+            </div>
+            <div class="form-group">
+                <label class="form-control">City</label>
+                <input required asp-for="Orders.Order.City" class="form-control text-dark" />
+            </div>
+            <div class="form-group">
+                <label class="form-control">State</label>
+                <input required asp-for="Orders.Order.State" class="form-control text-dark" />
+            </div>
+            <div class="form-group">
+                <label class="form-control">Street</label>
+                <input required asp-for="Orders.Order.Street" class="form-control text-dark" />
+            </div>
+            <div class="form-group">
+                <label class="form-control">House</label>
+                <input required asp-for="Orders.Order.House" class="form-control text-dark" />
+            </div>
+            <div class="form-group">
+                <label class="form-control">House</label>
+                <input required asp-for="Orders.Order.PostalCode" class="form-control text-dark" />
+            </div>
+            <div class="form-group">
+                <label class="form-control">Phone</label>
+                <input required asp-for="Orders.Order.Phone" class="form-control text-dark" />
+            </div>
+            <div class="form-group">
+                <label class="form-control">Email</label>
+                <input required asp-for="Orders.Order.Email" class="form-control text-dark" />
+            </div>
+        </form>
+                    <div class="d-flex my-5">
+                <a asp-action="index" class="btn btn-success">Back</a>
+            </div>
+    </div>
+
+</div>

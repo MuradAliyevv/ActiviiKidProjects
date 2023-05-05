@@ -1,0 +1,45 @@
+﻿@model GenderFormModel
+@{
+    ViewData["Title"] = "Site Info / Gender Add";
+
+}
+@section addcss{
+    <style>
+        label {
+            border-color: transparent !important;
+            color: black !important;
+            background-color: transparent !important;
+        }
+    </style>
+ }
+
+<div class="container p-5">
+    <h2 class="text-dark">Update Gender</h2>
+
+
+    <div class="form-group">
+        <form method="post" asp-action="GenderUpdate">
+            <div class="col-md-12 form-control bg-transparent border-0" asp-validation-summary="All"></div>
+            <div class="form-group">
+                <label class="form-control">Name</label>
+                <input required asp-for="Gender.Name" class="form-control text-dark" />
+                <input type="hidden" asp-for="Gender.Id" class="form-control text-dark" />
+                <input type="hidden" asp-for="Gender.CreatedDate" class="form-control text-dark" />
+                <span asp-validation-for="Gender.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="form-control">Имя</label>
+                <input required asp-for="GenderRus.Name" class="form-control text-dark" />
+                <input type="hidden" asp-for="GenderRus.Id" class="form-control text-dark" />
+                <span asp-validation-for="GenderRus.Name" class="text-danger"></span>
+            </div>
+            <div class="d-flex my-5">
+                <input class="btn btn-primary" type="submit" value="Update" />
+                <a asp-action="index" class="btn btn-success">Back</a>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

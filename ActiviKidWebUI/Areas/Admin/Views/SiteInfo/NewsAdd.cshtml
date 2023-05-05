@@ -1,0 +1,128 @@
+﻿@model NewsFormModel
+
+@{
+    ViewData["Title"] = "Site Info / News Add";
+
+}
+
+@section addcss{
+        <style>
+
+
+            .label-situation {
+                background-color: transparent;
+                position: relative !important;
+            }
+
+                .label-situation > label {
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: rgba(0, 0, 0, 0.10) !important;
+                }
+
+                .label-situation > img {
+                    width: 100%;
+                }
+
+            .input-situation {
+                opacity: 0 !important;
+                background-color: transparent;
+                position: absolute !important;
+                height: 200px !important
+            }
+
+            #plusIcon, #plusLogo {
+                position: absolute;
+            }
+
+            .row div:nth-child(2) > div > label {
+                text-align: left !important;
+            }
+            /*        input, textarea, .container-fluid{
+                        background-color: midnightblue !important;
+                    }
+
+
+                    .validation-summary-errors ul li{
+                        color: white;
+                    }*/
+
+
+
+
+            label {
+                border-color: transparent !important;
+                color: black !important;
+                background-color: transparent !important;
+            }
+        </style>
+}
+
+<div class="container p-5">
+    <h2 class="text-dark">Add News</h2>
+
+
+
+    <form method="post" action="NewsAdd" enctype="multipart/form-data">
+
+        <div class="row text-center">
+
+            <div class="col-md-6 col-sm-12">
+
+                <div class="form-group label-situation col-md-12" style="display: flex; justify-content: center; align-items: center; margin-top:5%; padding:2%; border:1px solid rgba(0, 0, 0, 0.50) !important;">
+                    <label id="plusIcon" class="form-control" for="favicon" style="font-size:2rem; background-color:transparent; border:none; text-align:center;">
+                        Add Image
+                    </label>
+                    <input class="input-situation custom-file-input-for-favicon" type="file" id="createdImage favicon" name="file" width="500" height="500" style="opacity:0;" />
+                    <img src="~/assets/img/" id="createdImageForFavicon" height="200" style="display:block;" />
+
+                </div>
+            </div>
+
+
+            <div class="col-md-6 col-sm-12">
+
+                @if (!string.IsNullOrEmpty(ViewBag.News))
+                {
+                    <div class="col-md-12">@ViewBag.News</div>
+                }
+                <div class="col-md-12" asp-validation-summary="All"></div>
+
+                <div class="form-group">
+                    <label class="form-control" for="name">Name</label>
+                    <input id="name" required asp-for="News.Name" class="form-control text-dark" />
+                    <span asp-validation-for="News.Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="form-control" for="name">Имя</label>
+                    <input id="name" required asp-for="NewsRus.Name" class="form-control text-dark" />
+                    <span asp-validation-for="NewsRus.Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="form-control" for="name">Description</label>
+                    <textarea rows="20" asp-for="News.Description"></textarea>
+                    <span asp-validation-for="News.Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="form-control" for="name">Описание</label>
+                    <textarea rows="20" asp-for="NewsRus.Description"></textarea>
+                    <span asp-validation-for="NewsRus.Description" class="text-danger"></span>
+                </div>
+                <input class="btn btn-primary my-5" type="submit" value="Add" />
+            </div>
+
+        </div>
+
+
+    </form>
+
+</div>
+
+
+
+@section addjs{
+
+}

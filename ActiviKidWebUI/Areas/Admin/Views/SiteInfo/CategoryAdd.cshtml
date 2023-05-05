@@ -1,0 +1,43 @@
+﻿@model CategoryFormModel
+@{
+    ViewData["Title"] = "Site Info / Category Add";
+
+}
+@section addcss{
+    <style>
+        label {
+            border-color: transparent !important;
+            color: black !important;
+            background-color: transparent !important;
+        }
+    </style>
+ }
+
+<div class="container p-5">
+    <h2 class="text-dark">Create Category</h2>
+
+
+    <div class="form-group">
+        <form method="post" asp-action="CategoryAdd">
+            <div class="col-md-12 form-control bg-transparent border-0" asp-validation-summary="All"></div>
+            <div class="form-group">
+                <label class="form-control">Name</label>
+                <input required asp-for="Category.Name" class="form-control text-dark" />
+                <span asp-validation-for="Category.Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="form-control">Имя</label>
+                <input required asp-for="CategoryRus.Name" class="form-control text-dark" />
+                <span asp-validation-for="CategoryRus.Name" class="text-danger"></span>
+            </div>
+            <div class="d-flex my-5">
+                <input class="btn btn-primary" type="submit" value="Add" />
+                <a asp-action="index" class="btn btn-success">Back</a>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

@@ -1,0 +1,152 @@
+﻿@model ServicesFormModel
+@{
+    ViewData["Title"] = "Site Info / Services Add";
+
+}
+@section addcss{
+            <link href="~/admin-assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" />
+    <style>
+        label {
+            border-color: transparent !important;
+            color: black !important;
+            background-color: transparent !important;
+            text-align: left;
+            padding-left: 0;
+        }
+
+        input[type="file"] {
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+ }
+
+<div class="container p-5">
+    <h2 class="text-dark">Create Service</h2>
+
+
+    <div class="form-group">
+        <form method="post" asp-action="ServicesAdd" enctype="multipart/form-data">
+            <div class="row text-center">
+     
+
+
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-group">
+                        <label class="form-control">Icon</label>
+                        <input required asp-for="Service.ImagePath" class="form-control text-dark" />
+                        <span asp-validation-for="Service.ImagePath" class="text-danger"></span>
+                    </div>
+            <div class="form-group">
+                <label class="form-control">Name</label>
+                <input required asp-for="Service.Name" class="form-control text-dark" />
+                <span asp-validation-for="Service.Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="form-control">Имя</label>
+                <input required asp-for="ServicesRus.Name" class="form-control text-dark" />
+                <span asp-validation-for="ServicesRus.Name" class="text-danger"></span>
+            </div>
+
+        
+
+            <div class="d-flex my-5">
+                <input class="btn btn-primary" type="submit" value="Add" />
+                <a asp-action="index" class="btn btn-success">Back</a>
+            </div>
+
+            </div>
+        </div>
+        </form>
+
+    </div>
+
+</div>
+
+@section addjs{
+    <script>
+       
+        $('#filePhone').on('change', function (e) {
+            
+            var fileName = $(this).val();
+            readURLp(this);
+        });
+
+
+
+        function readURLp(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                                    $('#plusPhone').text("Change Video");
+                                    $('#createdVideoForPhone').css("display", "block");
+
+                                    $('#createdVideoForPhone').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+
+        $('#fileTablet').on('change', function () {
+           
+            var fileName = $(this).val();
+            readURLt(this);
+
+
+
+
+        });
+
+        function readURLt(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+
+                    $('#plusTablet').text("Change Video");
+                    $('#createdVideoTablet').css("display", "block");
+
+                    $('#createdVideoTablet').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $('#filePc').on('change', function () {
+           
+            var fileName = $(this).val();
+            readURLpc(this);
+
+
+        });
+
+        function readURLpc(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                  
+                                $('#plusPc').text("Change Video");
+                                $('#createdVideoPc').css("display", "block");
+
+                                $('#createdVideoPc').attr('src', e.target.result);
+                }
+
+               
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+    </script>
+
+
+}

@@ -1,0 +1,77 @@
+﻿@model FooterViewModel
+<!-- Footer area Start -->
+<footer class="footer footer--1">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row pb--30 footer-method-box-row">
+                @foreach(var item in Model.Services)
+                {
+                    <!-- Services Start -->
+                    <div class="col-md-3">
+                        <div class="method-box">
+                            <div class="method-box__icon">
+                               @Html.Raw(item.ImagePath)
+                            </div>
+                            <div class="method-box__content">
+                                <h4>@item.Name</h4>
+                             
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Services End -->
+                }
+
+
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <hr class="line">
+                </div>
+            </div>
+            <div class="row ptb--30 justify-content-center">
+                <div class="col-xl-9 col-md-8">
+                    <!-- Newsletter Form Start -->
+                    <div class="newsletter">
+                        <p class="newsletter__desc text-center mb--30 submit-email">
+                            Trade Alert - Delivering the latest product trends and industry news straight to your inbox. We’ll never share your email address with a third-party.
+                        </p>
+                        <form  class="newsletter-form popup-subscribe-form validate">
+                            <div class="newsletter-form__group">
+                                <input type="email" id="email" class="newsletter-form__input add-email" placeholder="Your Email Address">
+                                <a id="must" class="newsletter-form__btn form-btn" style="display:flex; justify-content:center; align-items: center;">
+                                    <i class="fa fa-envelope"></i>
+                                </a>
+                            
+                            </div>
+                            <div class="after-submit" style="color:white;"></div>
+                        </form>
+                    </div>
+                    <!-- Newsletter Form End -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <hr class="line">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <hr class="line">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+    
+                    <p class="copyright-text">&copy; @LayoutResource.ActiviKid_2022_Made_With_By_Murad</p>
+              
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
